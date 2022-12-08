@@ -4,7 +4,7 @@ $(document).ready(function () {
         self.baseURL = "http://192.168.160.58/Olympics/api/Athletes";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
-        self.pageSize = ko.observable(70);
+        self.pageSize = ko.observable(20);
         self.totalRecords = ko.observable(50);
         self.totalPages = ko.observable(0);
         self.hasPrevious = ko.observable(false);
