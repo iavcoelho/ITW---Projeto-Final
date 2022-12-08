@@ -1,0 +1,57 @@
+$(document).ready(function () {
+    function VM() {
+        var self = this;
+        self.baseURL = "http://192.168.160.58/Olympics/api/Athletes";
+        self.records = ko.observableArray([]);
+        self.currentPage = ko.observable($(location).attr('search'));
+        self.pageSize = ko.observable(70);
+        self.totalRecords = ko.observable(50);
+        self.totalPages = ko.observable(0);
+        self.hasPrevious = ko.observable(false);
+        self.hasNext = ko.observable(false);
+        
+        console.log(self.currentPage)
+
+        self.previousPage = ko.computed(function () {
+            return self.currentPage() - 1;
+        }, self);
+        
+        self.nextPage = ko.computed(function () {
+            return self.currentPage() + 1;
+        }, self);
+
+        self.pageArray = function () {
+            var list = [];
+            var size = Math.min(self.totalPages(), 9);
+            var step;
+            if (size < 9 || self.currentPage() === 1)
+                step = 0;
+            else if (self.currentPage() >= self.totalPages() - 4)
+                step = self.totalPages() - 9;
+            else
+                step = Math.max(self.currentPage() - 5, 0);
+    
+            for (var i = 1; i <= size; i++)
+                list.push(i + step);
+            return list;
+        };
+                //Ajax call to get the data from the api
+        $.ajax({
+            url: self.baseURL + self.currentPage() + "&pagesize=" + self.pageSize(),
+            type: "GET",
+            dataType: "JSON",
+            data: JSON.stringify({ }),
+            success: function (data) {
+                //store the data 
+                self.records(data.Records)
+                self.totalRecords(data.TotalRecords)
+                self.totalPages(data.TotalPages)
+                self.currentPage(data.CurrentPage)
+                self.pageSize(data.PageSize)
+                self.hasNext(data.HasNext)
+                self.hasPrevious(data.HasPrevious)
+            }
+        })
+    }
+    ko.applyBindings(new VM())
+})

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
-		
+	
     el_autohide = document.querySelector('.autohide');
     
     // add padding-top to bady (if necessary)
