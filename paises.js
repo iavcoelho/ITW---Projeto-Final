@@ -1,7 +1,7 @@
 $(document).ready(function () {
     function VM() {
         var self = this;
-        self.baseURL = "http://192.168.160.58/Olympics/api/Athletes";
+        self.baseURL = "http://192.168.160.58/Olympics/api/Countries";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
         self.pageSize = ko.observable(20);
@@ -57,6 +57,7 @@ $(document).ready(function () {
                 self.pageSize(data.PageSize)
                 self.hasNext(data.HasNext)
                 self.hasPrevious(data.HasPrevious)
+                console.log(data)
             }
         })
     }
