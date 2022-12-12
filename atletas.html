@@ -92,20 +92,57 @@
     </div>
 
     <div class="row g-3" data-bind="foreach: records">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center my-2"><img src="imagens/avatar.svg" class="circle" alt=""></div>
-              <h5 class="card-title text-center" data-bind="text: Name.split(' ')[0] +' '+ Name.split(' ')[Name.split(' ').length-1] "></h5>
-              <p class="card-text text-center">
-                <span data-bind="text: 'ID: ' + Id"></span><br />
-                <span data-bind="text: 'Sexo: ' + Sex"></span><br />
-              </p>
-              <div class="text-center"><a href="#" class="btn btn-primary just">Ver Detalhes</a></div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center my-2"><img id="imagemAtleta" src="imagens/avatar.svg" class="circle" alt=""></div>
+            <h5 class="card-title text-center"
+              data-bind="text: Name.split(' ')[0] +' '+ Name.split(' ')[Name.split(' ').length-1] "></h5>
+            <p class="card-text text-center">
+              <span data-bind="text: 'ID: ' + Id"></span><br />
+              <span data-bind="text: 'Sexo: ' + Sex"></span><br />
+            </p>
+            <div class="text-center"><button class="btn btn-primary just" data-bind="click: modal">Ver Detalhes</button>
             </div>
           </div>
         </div>
-      </div>      
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col d-flex justify-content-center align-items-center"><img src="" id="modalImage" alt="" style="max-width: 500px;"></div>
+              <div class="col">
+                <p id="modalSex"></p>
+                <p id="modalHeight"></p>
+                <p id="modalWeight"></p>
+                <p id="modalBornDate"></p>
+                <p id="modalBornPlace"></p>
+                <p id="modalDiedDate"></p>
+                <p id="modalGames"></p>
+                <p id="modalMedals"></p>
+                <p id="modalModalities"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" href="" id="modalDetails" class="btn btn-info text-light">Ver Detalhes Completos</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

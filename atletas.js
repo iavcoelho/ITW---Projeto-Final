@@ -10,6 +10,7 @@ $(document).ready(function () {
         self.hasPrevious = ko.observable(false);
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
+        self.image = ko.observable("imagens/avatar.svg");
 
         self.previousPage = ko.computed(function () {
             return self.currentPage() - 1;
@@ -57,8 +58,42 @@ $(document).ready(function () {
                 self.pageSize(data.PageSize)
                 self.hasNext(data.HasNext)
                 self.hasPrevious(data.HasPrevious)
+                data.image != null ? $("#imagemAtleta").attr("src", self.image) : $("#imagemAtleta").attr("src", "imagens/avatar.svg")
             }
-        })
+        }),
+
+        modal = function modal(id) {
+            var myModal = new bootstrap.Modal(document.getElementById('modal'))
+
+            $.ajax ({
+                url: self.baseURL + "/FullDetails?id=" + id.Id,
+                type: "GET",
+                dataType: "JSON",
+                data: JSON.stringify({ }),
+                success: function (data) {
+                    console.log(data)
+                    var bornDate = new Date(data.BornDate).toDateString().split(' ').slice(1,4).join(' ')
+                    var diedDate = new Date(data.DiedDate).toDateString().split(' ').slice(1,4).join(' ')
+                    $("#modalLabel").text(data.Name)
+                    data.Photo != null ? $("#modalImage").attr("src",data.Photo) : $("#modalImage").attr("src","imagens/avatar.svg")
+                    data.Sex != null ? $("#modalSex").text("Sexo: " + data.Sex) : $("#modalSex").text("Sexo: Desconhecido")
+                    data.Height != "NA" ? $("#modalHeight").attr("src",data.Height) : $("#modalHeight").text("Altura: Desconhecida")
+                    data.Weight != "NA" ? $("#modalWeight").attr("src",data.Weight) : $("#modalWeight").text("Peso: Desconhecido")
+                    data.BornPlace != null ? $("#modalBornPlace").text("Local de Nascimento: " + data.BornPlace) : $("#modalBornPlace").text("Local de Nascimento: Desconhecido")
+                    data.BornDate != null ? $("#modalBornDate").text("Data de Nascimento: " + bornDate) : $("#modalBornDate").text("Data de Nascimento: Desconhecida")
+                    data.DiedDate != null ? $("#modalDiedDate").text("Data de Falecimento: " + diedDate).show() : $("#modalDiedDate").hide()
+                    data.DiedPlace != null ? $("#modalDiedPlace").text("Local de Falecimento: " + data.DiedPlace).show() : $("#modalDiedPlace").hide()
+                    $("#modalMedals").text("Medalhas: " + data.Medals.length)
+                    $("#modalGames").text("Participações: " + data.Games.length)
+                    $("#modalModalities").text("Modalidades: " + data.Modalities.length)
+                    $("#modalModalities").text("Modalidades: " + data.Modalities.length)
+                    $("#modalDetails").attr("href", "google.com")
+                    myModal.show()
+                }
+            })
+        }
     }
     ko.applyBindings(new VM())
-})
+});
+
+
