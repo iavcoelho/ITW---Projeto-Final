@@ -17,7 +17,7 @@
         element.className = element.className.replace(/-black/g, '-white');
       });
 
-      $("#navLogo").attr("src", "imagens/logo-dark.svg")
+      $("#navLogo").attr("src", "imagens/logo-white.svg")
   
       document.body.classList.add('bg-dark');
   
