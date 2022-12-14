@@ -62,3 +62,11 @@
     color: dimgray;
     text-decoration: overline;
   }
+
+  .bc-black {
+    background-color: gray;
+  }
+
+  .bc-white {
+    background-color: white;
+  }

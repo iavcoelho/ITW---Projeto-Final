@@ -59,7 +59,28 @@ $(document).ready(function () {
                 self.hasPrevious(data.HasPrevious)
                 console.log(data)
             }
-        })
+        }),
+        meuModal = function modal(id) {
+            var myModal = new bootstrap.Modal(document.getElementById('modal'))
+            $.ajax({
+                url: self.baseURL + "/FullDetails?id=" + id.Id,
+                type: "GET",
+                dataType: "JSON",
+                data: JSON.stringify({}),
+                success: function (data) {
+                    console.log(data)
+                    $("#modalLabel").text(data.Name)
+                    $("#modalImage").attr("src", data.Flag)
+                    $("#modalIOC").text("IOC: " + data.IOC.replace("(", "").replace(")", ""))
+                    $("#modalOrganizer").text("Jogos Olímpicos Organizados: " + data.Organizer.length)
+                    $("#modalParticipant").text("Jogos Olímpicos Participados: " + data.Participant.length)
+                    $("#modalEvents").text("Eventos Participados: " + data.Events.length)
+                    $("#modalID").text("ID: " + data.Id)
+                    $("#modalDetails").attr("href", "pais.html?id=" + data.Id)
+                    myModal.show()
+                }
+            })
+    }
     }
     ko.applyBindings(new VM())
 })
