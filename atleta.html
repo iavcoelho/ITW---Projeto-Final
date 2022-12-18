@@ -12,10 +12,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="customCSS/main.css">
+  <link rel="stylesheet" href="customCSS/loader.css">
 
 </head>
 
 <body class="bg-light">
+    <!-- Loader -->
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <!-- /Loader -->
   <!-- Nav -->
   <div class="autohide bg-light">
     <div class="container">
@@ -59,98 +65,40 @@
   </div>
   <!-- Fim Nav -->
   <!-- Conteúdo -->
-  <div class="" data-bind="with: data">
-    <p data-bind="text: Id"></p>
-    <p data-bind="text: Name"></p>
-    <p data-bind="text: BornPlace"></p>
-    <p data-bind="text: BornDate"></p>
-    <p data-bind="text: DiedPlace"></p>
-    <p data-bind="text: DiedDate"></p>
-    <p data-bind="text: Height"></p>
-    <p data-bind="text: Weight"></p>
-    <p data-bind="text: Sex"></p>
-    <p data-bind="text: OlympediaLink"></p>
-    <img data-bind="attr:{src: Photo}" alt="">
-  </div>
-  <footer class="bg-dark text-center text-white">
-    <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/jogosolimpicospt/" role="button">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/JogosOlimpicos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" role="button">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://olympics.com/" role="button">
-                <i class="fa fa-google"></i>
-            </a>
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/jogosolimpicos/" role="button">
-                <i class="fa fa-instagram"></i>
-            </a>
-        </section>
-        <section>
-            <!--Grid row-->
-            <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">CONTACTOS</h5>
 
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <p>
-                                iavcoelho@ua.pt<br/>
-                                keeganazevedo@ua.pt
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">CONTACTOS UA</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <p>
-                                geral@ua.pt
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                +351 234 370 200
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Quick Access</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a style="color: white" href="#">Início</a>
-                        </li>
-                        <li>
-                            <a style="color: white" href="#">Países</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a style="color: white" href="#">Atletas</a>
-                        </li>
-                        <li>
-                            <a style="color: white" href="#">Edições</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <div class="container" data-bind="">
+    <div class="py-2 mb-3">
+        <h2 style="color:red"><b data-bind=""></b></h2>
     </div>
-</footer>
+    <table class="table table-sm small">
+        <tr class="row">
+            <th class="col-md-2">Id:</th>
+            <td class="col-md-10" data-bind="text: id"></td>
+        </tr>
+        <tr class="row" data-bind="">
+            <th class="col-md-2">Image:</th>
+            <td class="col-md-10"><img type="button" data-bind="attr:{src: ImageURL}" class="img-thumbnail col-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><br />[<span data-bind="text: ImageURL"></span>]</td>
+        </tr>
+        <tr class="row">
+            <th class="col-md-2">Nome:</th>
+            <td class="col-md-10" data-bind="text: Name"></td>
+        </tr>
+        <tr class="row">
+            <th class="col-md-2">Url:</th>
+            <td class="col-md-10"><a class="text-muted text-decoration-none" data-bind="" i class=""></i> [<span class="" data-bind="attr:{href: Link}"></span>]</a></td>
+        </tr>
+        <tr class="row">
+            <th colspan="2">Jogos [<span data-bind="text: Games().length"></span>]:</th>
+        </tr>
+        <tr>
+          <td colspan="2" class="small" data-bind="foreach: Games">
+              <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-road"></i> <a class="text-muted text-decoration-none" data-bind="text: Name"></a> (<span data-bind="text:Id"></span>)</div>
+          </td>
+      </tr>
+    </table>
+</div>
+
+
   <!-- Fim Conteúdo -->
 
     <!-- Bootstrap JS -->
@@ -161,6 +109,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
     <!-- Autohide navbar script -->
     <script src="customJS/autohide.js"></script>
+    <script src="customJS/darkSwitch.js"></script>
+    <script src="customJS/loader.js"></script>
     <script src="customJS/atleta.js"></script>
 </body>
 

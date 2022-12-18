@@ -30,18 +30,21 @@ $(document).ready(function () {
         })
 }
 
+$('#modal').on('hidden.bs.modal', function () {
+    location.reload();
+   })
+
     function VM() {
         var self = this;
         self.baseURL = "http://192.168.160.58/Olympics/api/Athletes";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
-        self.pageSize = ko.observable(20);
+        self.pageSize = ko.observable(15);
         self.totalRecords = ko.observable(50);
         self.totalPages = ko.observable(0);
         self.hasPrevious = ko.observable(false);
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
-        self.image = ko.observable("imagens/avatar.svg");
         self.searchArray = ko.observableArray([]);
 
         self.previousPage = ko.computed(function () {

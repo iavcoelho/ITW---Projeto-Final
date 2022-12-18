@@ -13,11 +13,20 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="customCSS/main.css">
+  <link rel="stylesheet" href="customCSS/cards.css">
+  <link rel="stylesheet" href="customCSS/loader.css">
   <!-- JQuery UI -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body class="bg-light">
+
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+  <!-- /Loader -->
+
   <!-- Nav -->
   <div class="autohide bg-light">
     <div class="container">
@@ -39,7 +48,7 @@
                 <a class="nav-link text-black" href="paises.html?page=1">Países</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="atletas.html?page=1">Atletas</a>
+                <a class="nav-link text-black" href="atletas.html?page=1" >Atletas</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -124,29 +133,41 @@
       </div>
     </div>
 
-    <div class="row g-3" data-bind="foreach: records">
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card bc-white">
-          <div class="card-body">
-            <!-- ko ifnot: Photo == null -->
-            <div class="text-center my-2"><img id="imagemAtleta" data-bind="attr:{src: Photo}" style="height:200px;" class="circle"  alt=""></div>
-            <!-- /ko -->
-            <!-- ko if: Photo == null -->
-            <div class="text-center my-2"><img id="imagemAtleta" data-bind="attr:{src: 'imagens/avatar.svg'}" class="circle" style="height:200px;" alt=""></div>
-            <!-- /ko -->
-            <h5 class="card-title text-center"
-              data-bind="text: Name.split(' ')[0] +' '+ Name.split(' ')[Name.split(' ').length-1] "></h5>
-            <p class="card-text text-center">
-              <span data-bind="text: 'ID: ' + Id"></span><br />
-              <span data-bind="text: 'Sexo: ' + Sex"></span><br />
-            </p>
-            <div class="text-center"><button class="btn btn-primary just" data-bind="click: meuModal">Ver Detalhes</button>
-            </div>
-          </div>
-        </div>
+    <div class="container">
+      <div class="row g-3" data-bind="foreach: records">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                  <article class="material-card Red" >
+                      <h2>
+                          <span data-bind="text: Name.split(' ')[0] +' '+ Name.split(' ')[Name.split(' ').length-1] "></span>
+                          <strong>
+                              <span data-bind="text: Id"></span>
+                          </strong>
+                      </h2>
+                      <div class="mc-content">
+                          <div class="img-container d-flex justify-content-center align-items-center">
+                              <!-- ko ifnot: Photo == null -->
+                              <img class="img-responsive img" data-bind="attr:{src: Photo}">
+                              <!-- /ko -->
+                              <!-- ko if: Photo == null -->
+                              <img class="img-responsive" style="height: auto; width: 80%;" src="imagens/avatar.svg">
+                              <!-- /ko -->
+                          </div>
+                          <div class="mc-description" style="color: black;">
+                            <p data-bind="text: 'Nome: ' + Name"></p>
+                            <p data-bind="text: 'Sexo: ' + Sex"></p>
+                            <p data-bind="text: 'Melhor Posição: ' + BestPosition"></p>
+                          </div>
+                      </div>
+                      <a class="mc-btn-action">
+                          <i class="fa fa-bars"></i>
+                      </a>
+                      <div class="mc-footer">
+                        <button class="btn btn-primary" data-bind="click: meuModal">Ver Detalhes</button>
+                      </div>
+                  </article>
+              </div>
       </div>
-    </div>
-
+  </div>
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
@@ -173,93 +194,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <a type="button" id="modalDetails" class="btn btn-info text-light">Ver Detalhes Completos</a>
+            <a type="button" id="modalDetails" class="btn btn-primary text-light">Ver Detalhes Completos</a>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <footer class="bg-dark text-center text-white">
-      <div class="container p-4">
-          <!-- Section: Social media -->
-          <section class="mb-4">
-              <!-- Facebook -->
-              <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/jogosolimpicospt/" role="button">
-                  <i class="fa fa-facebook"></i>
-              </a>
-              <!-- Twitter -->
-              <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/JogosOlimpicos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" role="button">
-                  <i class="fa fa-twitter"></i>
-              </a>
-              <!-- Google -->
-              <a class="btn btn-outline-light btn-floating m-1" href="https://olympics.com/" role="button">
-                  <i class="fa fa-google"></i>
-              </a>
-              <!-- Instagram -->
-              <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/jogosolimpicos/" role="button">
-                  <i class="fa fa-instagram"></i>
-              </a>
-          </section>
-          <section>
-              <!--Grid row-->
-              <div class="row">
-                  <!--Grid column-->
-                  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                      <h5 class="text-uppercase">CONTACTOS</h5>
-  
-                      <ul class="list-unstyled mb-0">
-                          <li>
-                              <p>
-                                  iavcoelho@ua.pt<br/>
-                                  keeganazevedo@ua.pt
-                              </p>
-                          </li>
-                      </ul>
-                  </div>
-                  <!--Grid column-->
-                  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                      <h5 class="text-uppercase">CONTACTOS UA</h5>
-                      <ul class="list-unstyled mb-0">
-                          <li>
-                              <p>
-                                  geral@ua.pt
-                              </p>
-                          </li>
-                          <li>
-                              <p>
-                                  +351 234 370 200
-                              </p>
-                          </li>
-                      </ul>
-                  </div>
-                  <!--Grid column-->
-                  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                      <h5 class="text-uppercase">Quick Access</h5>
-                      <ul class="list-unstyled mb-0">
-                          <li>
-                              <a href="#">Início</a>
-                          </li>
-                          <li>
-                              <a href="#">Países</a>
-                          </li>
-                      </ul>
-                  </div>
-                  <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                      <ul class="list-unstyled mb-0">
-                          <li>
-                              <a href="#">Atletas</a>
-                          </li>
-                          <li>
-                              <a href="#">Edições</a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </section>
-      </div>
-  </footer>
-
-
+   
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -272,7 +213,8 @@
     <script src="customJS/autohide.js"></script>
     <script src="customJS/atletas.js"></script>
     <script src="customJS/darkSwitch.js"></script>
-    </script>
+    <script src="customJS/cards.js"></script>
+    <script src="customJS/loader.js"></script>
 </body>
 
 </html>

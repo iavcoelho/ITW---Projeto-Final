@@ -1,6 +1,12 @@
+@import "https://fonts.googleapis.com/css?family=Nunito:400,300,200,500,600,700";
 * {
     transition: all 0.3s ease-in-out;
 }
+
+body {
+    color: #37474F;
+    font-family: 'Nunito', sans-serif;
+  }
 
 .nav-link {
     position: relative;
@@ -38,11 +44,31 @@
     width: 100%;
     z-index: 1030;
 }
+
+.autohide-bottom{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+}
 .scrolled-down{
     transform:translateY(-100%); transition: all 0.3s ease-in-out;
 }
 .scrolled-up{
     transform:translateY(0); transition: all 0.3s ease-in-out;
+}
+
+.scrolled-down-bottom{
+    transform:translateY(100%); transition: all 0.3s ease-in-out;
+}
+.scrolled-up-bottom{
+    transform:translateY(0); transition: all 0.3s ease-in-out;
+}
+
+.inverted {
+    filter: invert(100%);
 }
 
 #lightSwitch {

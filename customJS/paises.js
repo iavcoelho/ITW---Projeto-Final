@@ -1,15 +1,42 @@
 $(document).ready(function () {
+    searchModal = function modal(id) {
+        var myModal = new bootstrap.Modal(document.getElementById('modal'))
+        baseURL = "http://192.168.160.58/Olympics/api/Countries";
+        $.ajax({
+            url: baseURL + "/FullDetails?id=" + id.id,
+            type: "GET",
+            dataType: "JSON",
+            data: JSON.stringify({}),
+            success: function (data) {
+                $("#modalLabel").text(data.Name)
+                $("#modalImage").attr("src", data.Flag)
+                $("#modalIOC").text("IOC: " + data.IOC.replace("(", "").replace(")", ""))
+                $("#modalOrganizer").text("Jogos Olímpicos Organizados: " + data.Organizer.length)
+                $("#modalParticipant").text("Jogos Olímpicos Participados: " + data.Participant.length)
+                $("#modalEvents").text("Eventos Participados: " + data.Events.length)
+                $("#modalID").text("ID: " + data.Id)
+                $("#modalDetails").attr("href", "pais.html?id=" + data.Id)
+                myModal.show()
+            }
+        })
+}
+
+$('#modal').on('hidden.bs.modal', function () {
+    location.reload();
+   })
     function VM() {
         var self = this;
         self.baseURL = "http://192.168.160.58/Olympics/api/Countries";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
-        self.pageSize = ko.observable(20);
+        self.pageSize = ko.observable(15);
         self.totalRecords = ko.observable(50);
         self.totalPages = ko.observable(0);
         self.hasPrevious = ko.observable(false);
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
+
+        self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
 
         self.previousPage = ko.computed(function () {
             return self.currentPage() - 1;
@@ -80,7 +107,30 @@ $(document).ready(function () {
                     myModal.show()
                 }
             })
-    }
+        }
+        $("#searchbar").autocomplete({
+            minLength: 2,            
+            source: function (request, response) {
+                $.ajax({
+                    url: self.baseURL + "/SearchByName?q=" + request.term,
+                    type: "GET",
+                    dataType: "JSON",
+                    data: JSON.stringify({}),
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Name,
+                                value: item.Name,
+                                id: item.Id
+                            }
+                        }).slice(0, 10));
+                    }
+                })
+            },
+            select: function(event, ui) {
+                searchModal(ui.item)
+            }
+        })
     }
     ko.applyBindings(new VM())
 })
