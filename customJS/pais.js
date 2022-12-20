@@ -31,6 +31,10 @@ $(document).ready(function () {
                 //store the data 
                 self.data(data)
                 console.log(self.data())
+            },
+            complete: function () {
+                console.log("complete")
+                hideLoader()
             }
 
         })

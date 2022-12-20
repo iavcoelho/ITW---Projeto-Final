@@ -35,6 +35,7 @@ $(document).ready(function () {
         self.Games = ko.observableArray([])
         self.Medals = ko.observableArray([])
         self.Modalities = ko.observableArray([])
+
         $.ajax({
             url: self.baseURL + self.id,
             type: "GET",
@@ -57,6 +58,10 @@ $(document).ready(function () {
                 self.Medals(data.Medals)
                 self.Modalities(data.Modalities)
                 console.log(self.data)
+            },
+            complete: function () {
+                console.log("complete")
+                hideLoader()
             }
 
         })

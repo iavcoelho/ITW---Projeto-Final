@@ -1,3 +1,3 @@
-$(window).ready(function (){
+function hideLoader(){
     $(".loader-wrapper").fadeOut()
-})
+}
