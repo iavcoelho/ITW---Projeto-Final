@@ -34,12 +34,6 @@
         // add table-dark class to each table
         tables[i].classList.add('table-dark');
       }
-      // cards
-      var cards = document.querySelectorAll('card');
-      for (var i = 0; i < tables.length; i++) {
-        // add bg-dark class to each table
-        cards[i].classList.add('bg-black');
-      }
   
       // set light switch input to true
       if (!lightSwitch.checked) {
@@ -85,12 +79,6 @@
         }
       }
 
-      var cards = document.querySelectorAll('card');
-      for (var i = 0; i < tables.length; i++) {
-        // add bg-dark class to each table
-        cards[i].classList.add('bc-white');
-      }
-  
       if (lightSwitch.checked) {
         lightSwitch.checked = false;
       }

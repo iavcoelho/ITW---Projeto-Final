@@ -17,7 +17,7 @@ $(document).ready(function () {
                 $("#modalID").text("ID: " + data.Id)
                 $("#modalDetails").attr("href", "pais.html?id=" + data.Id)
                 myModal.show()
-            }
+            },
         })
 }
 
@@ -85,6 +85,10 @@ $('#modal').on('hidden.bs.modal', function () {
                 self.hasNext(data.HasNext)
                 self.hasPrevious(data.HasPrevious)
                 console.log(data)
+            },
+            complete: function () {
+                console.log("complete")
+                hideLoader()
             }
         }),
         meuModal = function modal(id) {
