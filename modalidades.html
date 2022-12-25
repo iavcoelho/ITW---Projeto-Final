@@ -40,16 +40,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active text-black" aria-current="page" href="index.html">Início</a>
+                <a class="nav-link text-black" href="index.html">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="paises.html">Países</a>
+                <a class="nav-link text-black" href="paises.html?page=1">Países</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="atletas.html">Atletas</a>
+                <a class="nav-link text-black" href="atletas.html?page=1">Atletas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="modalidades.html?page=1">Modalidades</a>
+                <a class="nav-link active text-black" aria-current="page" href="modalidades.html?page=1">Modalidades</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,9 +110,9 @@
         <ul class="pagination float-end">
           <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
           <li class="page-item float-end"><a class="page-link" title="First Page"
-              data-bind="attr: { href: './paises.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+              data-bind="attr: { href: './modalidades.html?page=' + '1',  rel:'prev'}">⇤</a></li>
           <li class="page-item float-end"><a class="page-link" title="Previous Page"
-              data-bind="attr: { href: './paises.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+              data-bind="attr: { href: './modalidades.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
           <!-- /ko -->
           <!-- ko foreach: pageArray()-->
           <!-- ko if:$data == $parent.currentPage() -->
@@ -121,15 +121,15 @@
           <!-- /ko -->
           <!-- ko if:$data != $parent.currentPage() -->
           <li class="page-item"><a class="page-link"
-              data-bind="attr: { href: './paises.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+              data-bind="attr: { href: './modalidades.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
           </li>
           <!-- /ko -->
           <!-- /ko -->
           <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
           <li class="page-item"><a class="page-link" title="Next Page"
-              data-bind="attr: { href: './paises.html?page=' + nextPage(), rel:'next' }">→</a></li>
+              data-bind="attr: { href: './modalidades.html?page=' + nextPage(), rel:'next' }">→</a></li>
           <li class="page-item"><a class="page-link" title="Last Page"
-              data-bind="attr: { href: './paises.html?page=' + totalPages() }">⇥</a></li>
+              data-bind="attr: { href: './modalidades.html?page=' + totalPages() }">⇥</a></li>
           <!-- /ko -->
         </ul>
       </div>
@@ -208,7 +208,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
     <!-- Autohide navbar script -->
     <script src="customJS/autohide.js"></script>
-    <script src="customJS/paises.js"></script>
+    <script src="customJS/modalidades.js"></script>
     <script src="customJS/darkSwitch.js"></script>
     <script src="customJS/cards.js"></script>
     <script src="customJS/loader.js"></script>
