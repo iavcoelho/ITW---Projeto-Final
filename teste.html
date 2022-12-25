@@ -13,11 +13,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="customCSS/main.css">
-  <link rel="stylesheet" href="customCSS/cards.css">
+  <link rel="stylesheet" href="customCSS/loader.css">
   <!-- JQuery UI -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 <body>
+
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+  <!-- /Loader -->
 
       <!-- Nav -->
   <div class="autohide bg-light">
@@ -37,10 +43,10 @@
                 <a class="nav-link active text-black" aria-current="page" href="index.html">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="paises.html?page=1">Países</a>
+                <a class="nav-link text-black" href="paises.html">Países</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="atletas.html?page=1">Atletas</a>
+                <a class="nav-link text-black" href="atletas.html">Atletas</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,12 +94,10 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <!-- KnockoutJS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-        <!-- Autohide navbar script -->
         <script src="customJS/cards.js"></script>
         <script src="customJS/autohide.js"></script>
-        <script src="customJS/atletas.js"></script>
         <script src="customJS/darkSwitch.js"></script>
-
+        <script src="customJS/loader.js"></script>
 </body>
 </html>
 

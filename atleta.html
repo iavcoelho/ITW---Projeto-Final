@@ -40,10 +40,10 @@
                 <a class="nav-link active text-black" aria-current="page" href="index.html">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="paises.html?page=1">Países</a>
+                <a class="nav-link text-black" href="paises.html">Países</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="atletas.html?page=1" >Atletas</a>
+                <a class="nav-link text-black" href="atletas.html" >Atletas</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -111,7 +111,7 @@
         </tr>
         <tr>
           <td class="small" data-bind="foreach: Modalities">
-           <a data-bind="attr:{href: './modalidade?id=' + Id}"><div class="border rounded d-inline-block mr-2 mb-1 p-1 text-decoration-none link-info"><img data-bind="attr:{src: Photo}" style="height: 30px;filter: invert(50%)" alt=""><span data-bind="text:' ' + Name + ' (' + Id + ') '"></span></div></a>
+           <div class="border rounded d-inline-block mr-2 mb-1 p-1 text-decoration-none link-info"><img data-bind="attr:{src: Photo}" style="height: 30px;filter: invert(50%)" alt=""><span data-bind="text:' ' + Name + ' (' + Id + ') '"></span></div>
           </td>
         </tr>
               <!-- ko ifnot: Medals().length == 0 -->
@@ -137,7 +137,7 @@
         </tr>
         <tr>
           <td colspan="2" class="small" data-bind="foreach: Games">
-              <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-magnifying-glass"></i> <a class="text-info text-decoration-none" data-bind="text: Name, attr:{href: './edicao?id=' + Id }"></a> (<span data-bind="text:Id"></span>)</div>
+              <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-magnifying-glass"></i> <a class="text-info text-decoration-none" data-bind="text: Name, attr:{href: './evento.html?id=' + Id }"></a> (<span data-bind="text:Id"></span>)</div>
           </td>
       </tr>
 

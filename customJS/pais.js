@@ -22,6 +22,13 @@ $(document).ready(function () {
         self.id = getUrlParameter('id')
         console.log(self.id)
         self.data = ko.observable()
+        self.Organizer = ko.observableArray([])
+        self.Events = ko.observableArray([])
+        self.Participant = ko.observableArray([])
+        self.Flag = ko.observable()
+        self.Name = ko.observable()
+        self.Id = ko.observable()
+        self.IOC = ko.observable()
         $.ajax({
             url: self.baseURL + self.id,
             type: "GET",
@@ -30,6 +37,13 @@ $(document).ready(function () {
             success: function (data) {
                 //store the data 
                 self.data(data)
+                self.Organizer(data.Organizer)
+                self.Events(data.Events)
+                self.Participant(data.Participant)
+                self.Flag(data.Flag)
+                self.Id(data.Id)
+                self.Name(data.Name)
+                self.IOC(data.IOC)
                 console.log(self.data())
             },
             complete: function () {

@@ -69,6 +69,9 @@ $('#modal').on('hidden.bs.modal', function () {
                 list.push(i + step);
             return list;
         };
+
+        self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
+
                 //Ajax call to get the data from the api
         $.ajax({
             url: self.baseURL + self.currentPage() + "&pagesize=" + self.pageSize(),
