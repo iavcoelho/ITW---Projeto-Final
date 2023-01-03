@@ -1,4 +1,19 @@
- (function () {
+$(document).ready(function () {
+  $('.lightSwitch').click(function () {
+    if ($(this).is(':checked')) {
+      $(this).siblings('i').removeClass('fa-sun').addClass('fa-moon');
+    } else {
+      $(this).siblings('i').removeClass('fa-moon').addClass('fa-sun');
+    }
+  });
+
+  if (localStorage.getItem("lightSwitch") === null) {
+    localStorage.setItem("lightSwitch", "light");
+  }
+
+});
+
+(function () {
     let lightSwitch = document.getElementById('lightSwitch');
     if (!lightSwitch) {
       return;
@@ -21,12 +36,7 @@
       $("#modalCloseButton").attr("class","btn-close btn-close-white")
   
       document.body.classList.add('bg-dark');
-  
-      if (document.body.classList.contains('text-dark')) {
-        document.body.classList.replace('text-dark', 'text-light');
-      } else {
-        document.body.classList.add('text-light');
-      }
+
   
       // Tables
       var tables = document.querySelectorAll('table');
@@ -39,6 +49,7 @@
       if (!lightSwitch.checked) {
         lightSwitch.checked = true;
       }
+
       localStorage.setItem('lightSwitch', 'dark');
     }
   
@@ -64,12 +75,7 @@
       });
   
       document.body.classList.add('bg-light');
-  
-      if (document.body.classList.contains('text-light')) {
-        document.body.classList.replace('text-light', 'text-dark');
-      } else {
-        document.body.classList.add('text-dark');
-      }
+
   
       // Tables
       var tables = document.querySelectorAll('table');
@@ -89,7 +95,7 @@
      * @function onToggleMode
      * @summary: the event handler attached to the switch. calling @darkMode or @lightMode depending on the checked state.
      */
-    function onToggleMode() {
+    window.onToggleMode = function () {
       if (lightSwitch.checked) {
         darkMode();
       } else {
@@ -120,7 +126,7 @@
       }
   
       lightSwitch.addEventListener('change', onToggleMode);
-      onToggleMode();
+      window.onToggleMode();
     }
   
     setup();

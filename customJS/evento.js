@@ -57,6 +57,10 @@ $(document).ready(function () {
                     silver.push(medal.Medals[1].Counter)
                     bronze.push(medal.Medals[2].Counter)
                 });
+
+                console.log(countries)
+                $("#medalGraph").css("min-height", countries.length * 50 + "px")
+
                 var ctx = document.getElementById('medalGraph');
                 var medals = new Chart(ctx, {
                     type: 'horizontalBar',
@@ -85,6 +89,7 @@ $(document).ready(function () {
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
                                 barPercentage: 1,

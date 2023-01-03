@@ -1,0 +1,38 @@
+#lightSwitch {
+    display: none;
+    font-weight:400 ;
+}
+
+#lightSwitch + i {
+  /* Style the icon however you like */
+  font-size: 1.5em;
+  color: black;
+}
+
+#lightSwitch:checked + i {
+  /* Style the icon when the checkbox is checked */
+  content: "\f185";
+  color: white;
+}
+
+.custom-theme.bg-light {
+    background-color: darkslategray !important;
+    border-radius: 3px;
+    color: gainsboro;
+    text-decoration: underline;
+}
+
+.custom-theme.bg-dark {
+    background-color: blanchedalmond !important;
+    box-shadow: 10px 5px 5px rgba(246, 255, 219, 0.5);
+    color: dimgray;
+    text-decoration: overline;
+}
+
+/* .bc-black {
+    background-color: gray;
+}
+
+.bc-white {
+    background-color: white;
+} */
