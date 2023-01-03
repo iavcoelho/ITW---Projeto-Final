@@ -12,6 +12,10 @@ $(document).ready(function () {
                 $("#modalImage").attr("src", data.Photo)
                 $("#modalID").text("ID: " + data.Id)
                 $("#modalDetails").attr("href", "modalidades.html?id=" + data.Id)
+                $("#modalFavourite").click(function () {
+                    toggleFavourite('Modalities', data.Id, data.Name)
+                    $("#modalFavouriteIcon").toggleClass('favourite')
+                })
                 myModal.show()
             }
         })
@@ -22,7 +26,7 @@ $('#modal').on('hidden.bs.modal', function () {
    })
     function VM() {
         var self = this;
-        self.baseURL = "http://192.168.160.58/Olympics/api/Countries";
+        self.baseURL = "http://192.168.160.58/Olympics/api/Modalities";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
         self.pageSize = ko.observable(15);
@@ -31,6 +35,7 @@ $('#modal').on('hidden.bs.modal', function () {
         self.hasPrevious = ko.observable(false);
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
+        self.favourites = ko.observableArray([]);
 
         self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
 
@@ -65,6 +70,33 @@ $('#modal').on('hidden.bs.modal', function () {
                 list.push(i + step);
             return list;
         };
+
+        toggleFavourite = function (type, id, name) {
+            id = parseInt(id)
+            // Check if the item is already in the favourites list
+            if (localStorage.getItem(type + '_favourites')) {
+                var favourite = self.favourites().find(function(favourite) {
+                  return favourite[0] === id && favourite[1] === name;
+                });
+                var index = self.favourites().indexOf(favourite);            
+                if (index > -1) {
+                  // Remove the item from the favourites list
+                  self.favourites.splice(index, 1);
+                } else {
+                  // Add the item to the favourites list
+                  self.favourites.push([id, name]);
+                }
+              } else {
+                // Add the item to the favourites list
+                self.favourites.push([id, name]);
+              }
+            $('#favourite_' + id).toggleClass('favourite')
+
+            // Update the local storage
+            localStorage.setItem(type + '_favourites', JSON.stringify(self.favourites()));
+            console.log('Toggled Favourite ' + type + ' with Id = ' + id + ' and Name = ' + name);
+        };
+
                 //Ajax call to get the data from the api
         $.ajax({
             url: self.baseURL + self.currentPage() + "&pagesize=" + self.pageSize(),
@@ -81,6 +113,14 @@ $('#modal').on('hidden.bs.modal', function () {
                 self.hasNext(data.HasNext)
                 self.hasPrevious(data.HasPrevious)
                 console.log(data)
+            },
+            complete: function () {
+                self.favourites(JSON.parse(localStorage.getItem('Modalities_favourites')) || []);
+                self.favourites().forEach(function (element) {
+                    console.log(element)
+                    $('#favourite' + element).addClass('favourite')
+                });
+                hideLoader();
             }
         }),
         meuModal = function modal(id) {
@@ -96,6 +136,16 @@ $('#modal').on('hidden.bs.modal', function () {
                     $("#modalImage").attr("src", data.Photo)
                     $("#modalID").text("ID: " + data.Id)
                     $("#modalDetails").attr("href", "modalidades.html?id=" + data.Id)
+                    $("#modalFavourite").click(function () {
+                        toggleFavourite('Modalities', data.Id, data.Name)
+                        $("#modalFavouriteIcon").toggleClass('favourite')
+                    })
+                    console.log(data.Modalities)
+                    for (let element of data.Modalities) {
+                        $("#modalTable").append("<div class=\"border rounded d-inline-block mr-2 mb-1 p-1 text-decoration-none link-info\">" + element.Name + "</div>")
+                        
+                      }
+                      
                     myModal.show()
                 }
             })

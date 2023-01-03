@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Nunito:400,300,200,500,600,700";
+
 * {
     transition: all 0.3s ease-in-out;
 }
@@ -18,7 +19,7 @@ body {
     transition: all 0.2s;
     height: 2px;
     width: 100%;
-    background-color: red;
+    background-color: coral;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -27,16 +28,7 @@ body {
 .nav-link:hover::after {
     opacity: 1;
 }
-
-.banner {
-    height: 600px;
-    margin: auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.autohide{
+.autohide {
     position: fixed;
     top: 0;
     right: 0;
@@ -45,7 +37,7 @@ body {
     z-index: 1030;
 }
 
-.autohide-bottom{
+.autohide-bottom {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -53,46 +45,46 @@ body {
     width: 100%;
     z-index: 1030;
 }
-.scrolled-down{
-    transform:translateY(-100%); transition: all 0.3s ease-in-out;
-}
-.scrolled-up{
-    transform:translateY(0); transition: all 0.3s ease-in-out;
+
+.scrolled-down {
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
 }
 
-.scrolled-down-bottom{
-    transform:translateY(100%); transition: all 0.3s ease-in-out;
+.scrolled-up {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
 }
-.scrolled-up-bottom{
-    transform:translateY(0); transition: all 0.3s ease-in-out;
+
+.scrolled-down-bottom {
+    transform: translateY(100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.scrolled-up-bottom {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
 }
 
 .inverted {
     filter: invert(100%);
 }
 
-#lightSwitch {
-    transform: scale(1.8);
-  }
-  
-.custom-theme.bg-light {
-    background-color: darkslategray !important;
-    border-radius: 3px;
-    color: gainsboro;
-    text-decoration: underline;
-}
-  
-.custom-theme.bg-dark {
-    background-color: blanchedalmond !important;
-    box-shadow: 10px 5px 5px rgba(246, 255, 219, 0.5);
-    color: dimgray;
-    text-decoration: overline;
-}
 
-.bc-black {
-    background-color: gray;
+.favourite-button {
+  /* Style the button */
+  font-size: 1.5em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1000; /* Ensure the button is always on top (ITS OVER NINE THOUSAAAAAND)*/
+  /* Style the heart icon */
+  position: relative;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  padding-left: 13px;
 }
-
-.bc-white {
-    background-color: white;
+.favourite {
+  color: red !important;
 }

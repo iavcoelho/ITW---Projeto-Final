@@ -1,36 +1,7 @@
 $(document).ready(function () {
-    searchModal = function modal(id) {
-        var myModal = new bootstrap.Modal(document.getElementById('modal'))
-        baseURL = "http://192.168.160.58/Olympics/api/Countries";
-        $.ajax({
-            url: baseURL + "/FullDetails?id=" + id.id,
-            type: "GET",
-            dataType: "JSON",
-            data: JSON.stringify({}),
-            success: function (data) {
-                $("#modalLabel").text(data.Name)
-                $("#modalImage").attr("src", data.Flag)
-                $("#modalIOC").text("IOC: " + data.IOC.replace("(", "").replace(")", ""))
-                $("#modalOrganizer").text("Jogos Olímpicos Organizados: " + data.Organizer.length)
-                $("#modalParticipant").text("Jogos Olímpicos Participados: " + data.Participant.length)
-                $("#modalEvents").text("Eventos Participados: " + data.Events.length)
-                $("#modalID").text("ID: " + data.Id)
-                $("#modalDetails").attr("href", "pais.html?id=" + data.Id)
-                $("#modalFavourite").click(function () {
-                    toggleFavourite('Countries', data.Id, data.Name)
-                    $("#modalFavouriteIcon").toggleClass('favourite')
-                })
-                myModal.show()
-            },
-        })
-}
-
-$('#modal').on('hidden.bs.modal', function () {
-    location.reload();
-   })
     function VM() {
         var self = this;
-        self.baseURL = "http://192.168.160.58/Olympics/api/Countries";
+        self.baseURL = "http://192.168.160.58/Olympics/api/Games";
         self.records = ko.observableArray([]);
         self.currentPage = ko.observable($(location).attr('search'));
         self.pageSize = ko.observable(15);
@@ -39,14 +10,13 @@ $('#modal').on('hidden.bs.modal', function () {
         self.hasPrevious = ko.observable(false);
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
+        self.searchArray = ko.observableArray([]);
         self.favourites = ko.observableArray([]);
-
-        self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
 
         self.previousPage = ko.computed(function () {
             return self.currentPage() - 1;
         }, self);
-        
+
         self.nextPage = ko.computed(function () {
             return self.currentPage() + 1;
         }, self);
@@ -69,12 +39,11 @@ $('#modal').on('hidden.bs.modal', function () {
                 step = self.totalPages() - 9;
             else
                 step = Math.max(self.currentPage() - 5, 0);
-    
+
             for (var i = 1; i <= size; i++)
                 list.push(i + step);
             return list;
         };
-
         toggleFavourite = function (type, id, name) {
             id = parseInt(id)
             // Check if the item is already in the favourites list
@@ -102,14 +71,15 @@ $('#modal').on('hidden.bs.modal', function () {
             console.log('Toggled Favourite ' + type + ' with Id = ' + id + ' and Name = ' + name);
         };
 
+
         self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
 
-                //Ajax call to get the data from the api
+        //Ajax call to get the data from the api
         $.ajax({
             url: self.baseURL + self.currentPage() + "&pagesize=" + self.pageSize(),
             type: "GET",
             dataType: "JSON",
-            data: JSON.stringify({ }),
+            data: JSON.stringify({}),
             success: function (data) {
                 //store the data 
                 self.records(data.Records)
@@ -123,7 +93,8 @@ $('#modal').on('hidden.bs.modal', function () {
             },
             complete: function () {
                 console.log("complete")
-                self.favourites(JSON.parse(localStorage.getItem('Countries_favourites')) || []);
+                //foreach element in self.favourites, add the class favourite to the element
+                self.favourites(JSON.parse(localStorage.getItem('Games_favourites')) || []);
                 self.favourites().forEach(function (element) {
                     console.log(element)
                     $('#favourite_' + element).addClass('favourite')
@@ -131,33 +102,8 @@ $('#modal').on('hidden.bs.modal', function () {
                 hideLoader()
             }
         }),
-        meuModal = function modal(id) {
-            var myModal = new bootstrap.Modal(document.getElementById('modal'))
-            $.ajax({
-                url: self.baseURL + "/FullDetails?id=" + id.Id,
-                type: "GET",
-                dataType: "JSON",
-                data: JSON.stringify({}),
-                success: function (data) {
-                    console.log(data)
-                    $("#modalLabel").text(data.Name)
-                    $("#modalImage").attr("src", data.Flag)
-                    $("#modalIOC").text("IOC: " + data.IOC.replace("(", "").replace(")", ""))
-                    $("#modalOrganizer").text("Jogos Olímpicos Organizados: " + data.Organizer.length)
-                    $("#modalParticipant").text("Jogos Olímpicos Participados: " + data.Participant.length)
-                    $("#modalEvents").text("Eventos Participados: " + data.Events.length)
-                    $("#modalID").text("ID: " + data.Id)
-                    $("#modalDetails").attr("href", "pais.html?id=" + data.Id)
-                    $("#modalFavourite").click(function () {
-                        toggleFavourite('Countries', data.Id, data.Name)
-                        $("#modalFavouriteIcon").toggleClass('favourite')
-                    })
-                    myModal.show()
-                }
-            })
-        }
         $("#searchbar").autocomplete({
-            minLength: 2,            
+            minLength: 2,
             source: function (request, response) {
                 $.ajax({
                     url: self.baseURL + "/SearchByName?q=" + request.term,
@@ -175,10 +121,42 @@ $('#modal').on('hidden.bs.modal', function () {
                     }
                 })
             },
-            select: function(event, ui) {
-                searchModal(ui.item)
+            select: function (event, ui) {
+                //enviar para a pagina do evento
+                window.location.href = "evento.html?id=" + ui.item.id
+            
             }
-        })
+        });
+
+        initOwlCarousel = function () {
+            $('.owl-carousel').owlCarousel({
+                center: true,
+                loop:true,
+                margin:10,
+                dots: false,
+                nav: true,
+                items: 3,
+                responsiveClass:true,
+                autoplay:true,
+                autoplayTimeout:5000,
+                autoplayHoverPause:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    900:{
+                        items:3
+                    },
+                    1800:{
+                        items:5
+                    }
+                }
+            })
+        }
     }
     ko.applyBindings(new VM())
-})
+});
+
+
+
+

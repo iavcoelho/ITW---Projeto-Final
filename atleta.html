@@ -13,22 +13,23 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="customCSS/main.css">
   <link rel="stylesheet" href="customCSS/loader.css">
+  <link rel="stylesheet" href="customCSS/lightswitch.css">
 
 </head>
 
 <body class="bg-light">
-    <!-- Loader -->
-    <div class="loader-wrapper">
-      <span class="loader"><span class="loader-inner"></span></span>
-    </div>
-    <!-- /Loader -->
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+  <!-- /Loader -->
   <!-- Nav -->
   <div class="autohide bg-light">
     <div class="container">
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><img id="navLogo" id="navLogo" src="http://192.168.160.58/Olympics/Images/Olympic_rings.svg"
-              height="35px" alt=""></a>
+          <a class="navbar-brand" href="index.html"><img id="navLogo"
+              src="http://192.168.160.58/Olympics/Images/Olympic_rings.svg" height="35px" alt=""></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -43,140 +44,119 @@
                 <a class="nav-link text-black" href="paises.html">Países</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-black" href="atletas.html" >Atletas</a>
+                <a class="nav-link text-black" href="atletas.html">Atletas</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Edições
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">1</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">2</a></li>
-                </ul>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="modalidades.html">Modalidades</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="edicoes.html">Edições</a>
+              </li>
               </li>
             </ul>
-          </div>
-        </div>
-        <div class="d-flex">
-          <div class="form-check form-switch ms-auto mt-3 me-3">
-            <label class="form-check-label ms-3" for="lightSwitch">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-brightness-high"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
-                />
-              </svg>
+            <label for="lightSwitch">
+              <input type="checkbox" id="lightSwitch" class="lightSwitch" />
+              <i class="fa-solid fa-moon"></i>
             </label>
-            <input class="form-check-input" type="checkbox" id="lightSwitch" />
-          </div>
-        </div>
-        <div class="d-flex">
-          <div class="form-check form-switch ms-auto mt-3 me-3">
-            <label class="form-check-label ms-3" for="lightSwitch">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-brightness-high"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
-                />
-              </svg>
-            </label>
-            <input class="form-check-input" type="checkbox" id="lightSwitch" />
           </div>
         </div>
       </nav>
     </div>
   </div>
   <!-- Fim Nav -->
+
+
+  <a class="btn btn-secondary" href="/profile.html"
+    style="position: fixed;right:20px;bottom: 20px;z-index: 1030; border-radius: 100%; background-color: coral; outline: none; border: none;">
+    <i class="fas fa-user"></i>
+  </a>
+
   <!-- Conteúdo -->
 
-  <div class="container" data-bind="">
-    <div class="py-2 mb-3">
-        <h2 style="color:red"><b data-bind=""></b></h2>
-    </div>
-    <table class="table table-sm small">
-        <tr class="row">
-            <th class="col-md-2">Id:</th>
-            <td class="col-md-10" data-bind="text: id"></td>
-        </tr>
-        <tr class="row">
-            <th class="col-md-2">Image:</th>
-            <td class="col-md-10"><img type="button" data-bind="attr:{src: ImageURL}" class="img-thumbnail col-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><br />[<span data-bind="text: ImageURL"></span>]</td>
-        </tr>
-        <tr class="row">
-            <th class="col-md-2">Nome:</th>
-            <td class="col-md-10" data-bind="text: Name"></td>
-        </tr>
-        <tr class="row">
-            <th class="col-md-2">Url:</th>
-            <td class="col-md-10"><a class="text-decoration-none text-info" data-bind="attr:{href: Link}" i class=""></i> [<span class="" data-bind="text: Link"></span>]</a></td>
-        </tr>
-        <tr class="row">
-            <th>Modalidades:</th>
-        </tr>
-        <tr>
-          <td class="small" data-bind="foreach: Modalities">
-           <div class="border rounded d-inline-block mr-2 mb-1 p-1 text-decoration-none link-info"><img data-bind="attr:{src: Photo}" style="height: 30px;filter: invert(50%)" alt=""><span data-bind="text:' ' + Name + ' (' + Id + ') '"></span></div>
-          </td>
-        </tr>
-              <!-- ko ifnot: Medals().length == 0 -->
-      <tr colsapn="2" class="row">
+  <div class="container">
+    <table class="table table-striped" style="width: 100%;">
+      <tr class="row">
+        <th class="col-2">Id:</th>
+        <td class="col-md-10" data-bind="text: id"></td>
+      </tr>
+      <tr class="row">
+        <th class="col-md-2" colspan="2">Image:</th>
+        <td class="col-md-10"><img type="button" data-bind="attr:{src: ImageURL}" class="img-thumbnail col-2"
+            data-bs-toggle="modal" data-bs-target="#exampleModal"><br />[<span data-bind="text: ImageURL"></span>]</td>
+      </tr>
+      <tr class="row">
+        <th class="col-md-2">Nome:</th>
+        <td class="col-md-10" data-bind="text: Name"></td>
+      </tr>
+      <tr class="row">
+        <th class="col-md-2">Url:</th>
+        <td class="col-md-10"><a class="text-decoration-none text-info" data-bind="attr:{href: Link}" i class=""></i>
+            [<span class="" data-bind="text: Link"></span>]</a></td>
+      </tr>
+      <tr class="row">
+        <th>Modalidades:</th>
+      </tr>
+      <tr class="row">
+        <td data-bind="foreach: Modalities">
+          <div class="border rounded d-inline-block mr-2 mb-1 p-1 text-decoration-none link-info"><img
+              data-bind="attr:{src: Photo}" style="height: 30px;filter: invert(50%)" alt=""><span
+              data-bind="text:' ' + Name + ' (' + Id + ') '"></span></div>
+        </td>
+      </tr>
+      <!-- ko ifnot: Medals().length == 0 -->
+      <tr class="row">
         <th>Medals:</th>
       </tr>
-      <tr>
-        <td class="small" data-bind="foreach: Medals">
+      <tr class="row">
+        <td data-bind="foreach: Medals">
           <!-- ko if: MedalName == "Gold" -->
-          <div class="border rounded d-inline-block mr-2 mb-1 p-1 bg-warning text-dark"><i class=" fa fa-medal"></i> <span data-bind="text: MedalName"></span> (<span data-bind="text: Counter"></span>)</div>
+          <div class="border rounded d-inline-block mr-2 mb-1 p-1 bg-warning text-dark"><i class=" fa fa-medal"></i>
+            <span data-bind="text: MedalName"></span> (<span data-bind="text: Counter"></span>)</div>
           <!-- /ko -->
           <!-- ko if: MedalName == "Silver" -->
-          <div class="border rounded d-inline-block mr-2 mb-1 p-1 bg-secondary text-light"><i class="text-light fa fa-medal"></i> <span data-bind="text: MedalName"></span> (<span data-bind="text: Counter"></span>)</div>
+          <div class="border rounded d-inline-block mr-2 mb-1 p-1 bg-secondary text-light"><i
+              class="text-light fa fa-medal"></i> <span data-bind="text: MedalName"></span> (<span
+              data-bind="text: Counter"></span>)</div>
           <!-- /ko -->
           <!-- ko if: MedalName == "Bronze" -->
-          <div style="background-color: #cd7f32;" class="border rounded d-inline-block mr-2 mb-1 p-1 text-light"><i class="text-light fa fa-medal"></i> <span data-bind="text: MedalName"></span> (<span data-bind="text: Counter"></span>)</div>
+          <div style="background-color: #cd7f32;" class="border rounded d-inline-block mr-2 mb-1 p-1 text-light"><i
+              class="text-light fa fa-medal"></i> <span data-bind="text: MedalName"></span> (<span
+              data-bind="text: Counter"></span>)</div>
           <!-- /ko -->
         </td>
       </tr>
       <!-- /ko -->
-        <tr class="row">
-            <th colspan="2">Jogos [<span data-bind="text: Games().length"></span>]:</th>
-        </tr>
-        <tr>
-          <td colspan="2" class="small" data-bind="foreach: Games">
-              <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-magnifying-glass"></i> <a class="text-info text-decoration-none" data-bind="text: Name, attr:{href: './evento.html?id=' + Id }"></a> (<span data-bind="text:Id"></span>)</div>
-          </td>
+      <tr class="row">
+        <th colspan="2">Jogos [<span data-bind="text: Games().length"></span>]:</th>
       </tr>
-
+      <tr class="row">
+        <td colspan="2" class="small" data-bind="foreach: Games">
+          <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-magnifying-glass"></i> <a
+              class="text-info text-decoration-none" data-bind="text: Name, attr:{href: './evento.html?id=' + Id }"></a>
+            (<span data-bind="text:Id"></span>)</div>
+        </td>
+      </tr>
     </table>
-</div>
+  </div>
+
+  <a class="btn btn-secondary" href="/statistics.html"
+  style="position: fixed;left:20px;bottom: 20px;z-index: 1030; border-radius: 100%; background-color: coral; outline: none; border: none;">
+  <i class="fa-solid fa-chart-simple"></i>
 
 
   <!-- Fim Conteúdo -->
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <!-- KnockoutJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-    <!-- Autohide navbar script -->
-    <script src="customJS/autohide.js"></script>
-    <script src="customJS/darkSwitch.js"></script>
-    <script src="customJS/loader.js"></script>
-    <script src="customJS/atleta.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- KnockoutJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+  <!-- Autohide navbar script -->
+  <script src="customJS/autohide.js"></script>
+  <script src="customJS/darkSwitch.js"></script>
+  <script src="customJS/loader.js"></script>
+  <script src="customJS/atleta.js"></script>
 </body>
 
 </html>

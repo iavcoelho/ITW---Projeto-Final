@@ -25,14 +25,18 @@ $(document).ready(function () {
                 $("#modalModalities").text("Modalidades: " + data.Modalities.length)
                 $("#modalModalities").text("Modalidades: " + data.Modalities.length)
                 $("#modalDetails").attr("href", "atleta.html?id=" + data.Id)
+                $("#modalFavourite").click(function () {
+                    toggleFavourite('Athletes', data.Id, data.Name)
+                    $("#modalFavouriteIcon").toggleClass('favourite')
+                })
                 myModal.show()
             }
         })
-}
+    }
 
-$('#modal').on('hidden.bs.modal', function () {
-    location.reload();
-   })
+    $('#modal').on('hidden.bs.modal', function () {
+        location.reload();
+    })
 
     function VM() {
         var self = this;
@@ -46,6 +50,7 @@ $('#modal').on('hidden.bs.modal', function () {
         self.hasNext = ko.observable(false);
         self.id = ko.observable(1);
         self.searchArray = ko.observableArray([]);
+        self.favourites = ko.observableArray([]);
 
         self.previousPage = ko.computed(function () {
             return self.currentPage() - 1;
@@ -78,6 +83,32 @@ $('#modal').on('hidden.bs.modal', function () {
                 list.push(i + step);
             return list;
         };
+            toggleFavourite = function (type, id, name) {
+                id = parseInt(id)
+                // Check if the item is already in the favourites list
+                if (localStorage.getItem(type + '_favourites')) {
+                    var favourite = self.favourites().find(function(favourite) {
+                      return favourite[0] === id && favourite[1] === name;
+                    });
+                    var index = self.favourites().indexOf(favourite);
+                  
+                    if (index > -1) {
+                      // Remove the item from the favourites list
+                      self.favourites.splice(index, 1);
+                    } else {
+                      // Add the item to the favourites list
+                      self.favourites.push([id, name]);
+                    }
+                  } else {
+                    // Add the item to the favourites list
+                    self.favourites.push([id, name]);
+                  }
+                $('#favourite_' + id).toggleClass('favourite')
+
+                // Update the local storage
+                localStorage.setItem(type + '_favourites', JSON.stringify(self.favourites()));
+                console.log('Toggled Favourite ' + type + ' with Id = ' + id + ' and Name = ' + name);
+            };
 
         self.currentPage().includes("?page=") ? self.currentPage() : self.currentPage("?page=1")
 
@@ -100,6 +131,12 @@ $('#modal').on('hidden.bs.modal', function () {
             },
             complete: function () {
                 console.log("complete")
+                //foreach element in self.favourites, add the class favourite to the element
+                self.favourites(JSON.parse(localStorage.getItem('Athletes_favourites')) || []);
+                self.favourites().forEach(function (element) {
+                    console.log(element)
+                    $('#favourite_' + element[0]).addClass('favourite')
+                });
                 hideLoader()
             }
         }),
@@ -130,12 +167,16 @@ $('#modal').on('hidden.bs.modal', function () {
                         $("#modalModalities").text("Modalidades: " + data.Modalities.length)
                         $("#modalModalities").text("Modalidades: " + data.Modalities.length)
                         $("#modalDetails").attr("href", "atleta.html?id=" + data.Id)
+                        $("#modalFavourite").click(function () {
+                            toggleFavourite('Athletes', data.Id, data.Name)
+                            $("#modalFavouriteIcon").toggleClass('favourite')
+                        })
                         myModal.show()
                     }
                 })
-        }
+            }
         $("#searchbar").autocomplete({
-            minLength: 2,            
+            minLength: 2,
             source: function (request, response) {
                 $.ajax({
                     url: self.baseURL + "/SearchByName?q=" + request.term,
@@ -153,13 +194,11 @@ $('#modal').on('hidden.bs.modal', function () {
                     }
                 })
             },
-            select: function(event, ui) {
+            select: function (event, ui) {
                 //chama a funcao meuModal e invoca o modal com o id do atleta selecionado
                 searchModal(ui.item)
             }
-        })
+        });
     }
     ko.applyBindings(new VM())
 });
-
-
